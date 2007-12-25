@@ -4,7 +4,7 @@ use strict;
 use vars qw(@ISA $VERSION);
 require File::Spec::Unix;
 
-$VERSION = '3.25_01';
+$VERSION = '3.2501';
 
 @ISA = qw(File::Spec::Unix);
 
@@ -530,7 +530,7 @@ sub splitdir {
 	my @result = ();
 	my ($head, $sep, $tail, $volume, $directories);
 
-	return @result if ( (!defined($path)) || ($path eq '') );
+	return ('') if ( (!defined($path)) || ($path eq '') );
 	return (':') if ($path eq ':');
 
 	( $volume, $sep, $directories ) = $path =~ m|^((?:[^:]+:)?)(:*)(.*)|s;

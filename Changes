@@ -1,28 +1,21 @@
 Revision history for Perl distribution PathTools.
 
- - Major fixes on Win32, including a rewrite of catdir(), catfile(),
-   and canonpath() in terms of a single body of code. [Heinrich Tegethoff]
+ - tmpdir() on Cygwin now also looks in $ENV{TMP} and $ENV{TEMP}.
 
- - For Win32 and Cygwin, case-tolerance can vary depending on the
-   volume under scrutiny.  When Win32API::File is available, it will
-   be employed to determine case-sensitivity of the given filesystem
-   (C: by default), otherwise we still return the default of 1. [Reini
-   Urban]
+ - case_tolerant() on Cygwin and Win32 now take an optional path
+   argument, defaulting to the C drive, to check for case tolerance,
+   because this fact can vary on different volumes.
 
- - On Cygwin, we added $ENV{'TMP'} and $ENV{'TEMP'} to the list of
-   possible places to look for tmpdir() return values. [Reini Urban]
+ - File::Spec on Unix now uses Cwd::getcwd() rather than Cwd::cwd() to
+   get the current directory because I guess someone on p5p thought it
+   was more appropriate.
 
- - Added lots more tests for Cygwin. [Reini Urban]
+ - Added a large set of File::Spec tests for the Cygwin platform.
 
- - canonpath() with no arguments and canonpath(undef) now consistently
-   return undef on all platforms. [Spotted by Peter John Edwards]
+ - abs_path() now behaves correctly with symbolic links on VMS.
 
- - Fixed splitdir('') and splitdir(undef) and splitdir() to return an
-   empty list on VMS and MacOS, like it does on other platforms.
-   [Craig A. Berry]
-
- - All .pm files now have the same $VERSION number, rather than a
-   hodgepodge of various numbers.
+ - Someone fixed a couple of mysterious edge cases in VMS' canonpath()
+   and splitdir().
 
 3.25 - Mon May 21 21:07:26 2007
 
